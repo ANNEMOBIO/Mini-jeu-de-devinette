@@ -56,7 +56,20 @@ function App() {
       {!partieTerminee && (
         <form onSubmit={gererSoumission}>
           <div className="input-container"> 
-            <input type="number" value={essai} onChange={(event) => setEssai(event.target.value)} min="1" max="100" required/>
+          <input
+  type="text"
+  value={essai}
+  onChange={(event) => {
+    const userInput = event.target.value;
+    // Utilisation d'une expression régulière pour n'accepter que les chiffres
+    const cleanedInput = userInput.replace(/[^0-9]/g, '');
+    setEssai(cleanedInput);
+  }}
+  min="1"
+  max="100"
+  required
+/>
+
             <button type="submit">Entrer chiffre</button>
           </div>
         </form>
